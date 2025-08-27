@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Coverflow - One Page Portfolio</title>
+    <link rel="manifest" href="manifest.json" />
+    <link href="templatemo-3d-coverflow.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header" id="header">
+      <a href="#home" class="logo-container">
+        <div class="logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop
+                  offset="0%"
+                  style="stop-color: #667eea; stop-opacity: 1"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #764ba2; stop-opacity: 1"
+                />
+              </linearGradient>
+            </defs>
+            <rect
+              x="10"
+              y="25"
+              width="15"
+              height="50"
+              fill="url(#grad1)"
+              transform="rotate(-15 17.5 50)"
+            />
+            <rect x="35" y="15" width="15" height="70" fill="url(#grad1)" />
+            <rect
+              x="60"
+              y="25"
+              width="15"
+              height="50"
+              fill="url(#grad1)"
+              transform="rotate(15 67.5 50)"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="url(#grad1)"
+              stroke-width="2"
+              opacity="0.5"
+            />
+          </svg>
+        </div>
+        <div class="logo-text">3D pwa</div>
+      </a>
+
+      <nav class="main-menu" id="mainMenu">
+        <a href="#home" class="menu-item active">Home</a>
+
+        <a
+          href="https://github.com/IamTheCroniczz"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="menu-item external"
+          >GitHub</a
+        >
+      </nav>
+
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+      <div class="coverflow-wrapper">
+        <div class="info">
+          <h2 id="current-title">De um novo visual para suas fotos !</h2>
+          <p id="current-description">
+            Majestic peaks covered in snow during golden hour
+          </p>
+        </div>
+
+        <div class="coverflow-container" tabindex="0">
+          <div class="coverflow" id="coverflow">
+            <!-- Começa vazio, as imagens vão ser adicionadas pelo JS -->
+          </div>
+
+          <button class="nav-button prev" onclick="navigate(-1)">‹</button>
+          <button class="nav-button next" onclick="navigate(1)">›</button>
+
+          <div class="dots-container" id="dots"></div>
+
+          <!-- Agrupando botões -->
+          <div class="button-group">
+            <!-- Barra de ícones de efeitos com legendas -->
+            <div
+              class="effect-icons"
+              id="effectIcons"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: flex-end;
+                margin-right: 10px;
+              "
+            >
+              <div class="effect-icon-group">
+                <button
+                  class="effect-icon selected"
+                  data-effect="fujifilm"
+                  title="Fujifilm"
+                >
+                  <img
+                    src="img/fujifilm.png"
+                    alt="Fujifilm"
+                    style="
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    "
+                  />
+                </button>
+                <div class="effect-label">Fujifilm</div>
+              </div>
+              <div class="effect-icon-group">
+                <button
+                  class="effect-icon"
+                  data-effect="d3d"
+                  title="D3D"
+                >
+                  <img
+                    src="img/inverter.png"
+                    alt="D3D"
+                    style="
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    "
+                  />
+                </button>
+                
+                <div class="effect-label">D3D</div>
+              </div>
+              <div class="effect-icon-group">
+                <button
+                  class="effect-icon"
+                  data-effect="vhs"
+                  title="VHS"
+                >
+                  <img
+                    src="img/50cent.jpg"
+                    alt="VHS"
+                    style="
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    "
+                  />
+                </button>
+              
+                <div class="effect-label">VHS</div>
+              </div>
+              <div class="effect-icon-group">
+                <button class="effect-icon" data-effect="cyberpunk" title="Cyberpunk">
+                  <img
+                    src="img/sépia.png"
+                    alt="Cyberpunk"
+                    style="
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    "
+                  />
+                </button>
+                <div class="effect-label">Cyberpunk</div>
+              </div>
+              <div class="effect-icon-group">
+                <button
+                  class="effect-icon"
+                  data-effect="lomo"
+                  title="Lomo"
+                >
+                  <img
+                    src="img/cidade.jpg"
+                    alt="Lomo"
+                    style="
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    "
+                  />
+                </button>
+             
+                <div class="effect-label">P&B</div>
+              </div>
+            </div>
+            <!-- Botão adicionar imagens -->
+            <button class="play-pause-button" id="addImageBtn">
+              <span class="play-icon">📁</span>
+            </button>
+            <input
+              type="file"
+              id="uploadImage"
+              accept="image/*"
+              multiple
+              style="display: none"
+            />
+            <!-- Botão baixar imagem -->
+            <button
+              class="download-button"
+              id="downloadBtn"
+              style="display: none"
+            >
+              Baixar Imagem
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-copyright">
+          © 2025 3D pwa. | Designed by
+          <a
+            href="https://portfolio-lucas-maximo.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Lucas Maximo</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-to-top" id="scrollToTop">
+      <span>↑</span>
+    </div>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(() => console.log("Service Worker registrado!"))
+          .catch((err) => console.log("Erro no SW:", err));
+      }
+    </script>
+    <script src="addimg.js"></script>
+  </body>
+</html>
